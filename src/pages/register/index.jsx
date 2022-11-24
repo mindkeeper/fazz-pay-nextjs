@@ -16,7 +16,7 @@ export default function Register() {
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const checkEmptyForm = () => {
+  const checkEmptyForm = (body) => {
     if (!body.email || !body.password || !body.firstName || !body.lastName)
       return setEmptyForm(true);
     body.email &&
@@ -30,7 +30,7 @@ export default function Register() {
     setBody({ ...body, [e.target.name]: e.target.value });
   };
   useEffect(() => {
-    checkEmptyForm();
+    checkEmptyForm(body);
   }, [body]);
   return (
     <>
@@ -90,11 +90,7 @@ export default function Register() {
               onClick={togglePassword}
             ></i>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={emptyForm}
-          >
+          <button type="submit" disabled={emptyForm}>
             Register
           </button>
           <div className={styles["link-blue"]}>
