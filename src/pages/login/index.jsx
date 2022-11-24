@@ -23,7 +23,7 @@ export default function Login() {
   useEffect(() => {
     checkEmptyForm();
   }, [body]);
-  console.log(body);
+
   return (
     <>
       <PageTitle title="Login" />
