@@ -10,6 +10,7 @@ body {
 :root {
   --primary: #6379f4;
   --secondary: #fafcff;
+  --disabled-mobile: #fafcff83;
   --dark: #3a3d42;
   --dark03: #3a3d424d;
   --dark01: #3a3d421a;
