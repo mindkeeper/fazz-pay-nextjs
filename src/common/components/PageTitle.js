@@ -7,7 +7,7 @@ function PageTitle({ title }) {
       <title>{`${title} | FazzPay`}</title>
       <meta
         name="description"
-        content={`${title} of Z-Wallet, a money transfer app`}
+        content={`${title} of Fazzpay, a money transfer app`}
       />
     </Head>
   );
