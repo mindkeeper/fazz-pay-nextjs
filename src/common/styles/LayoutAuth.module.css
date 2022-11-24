@@ -107,13 +107,6 @@
 }
 
 @media (min-width: 1440px) {
-  /* .img1 {
-    transform: rotate(7.5deg);
-  }
-  .img2 {
-    transform: rotate(-7.5deg);
-  } */
-
   .img1,
   .img2 {
     aspect-ratio: 1;
