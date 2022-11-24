@@ -101,6 +101,7 @@
     height: 3rem;
     border-bottom: 1.5px solid var(--dark03);
     background-color: var(--background);
+    color: var(--dark02);
   }
   .form input::placeholder {
     color: var(--dark03);
