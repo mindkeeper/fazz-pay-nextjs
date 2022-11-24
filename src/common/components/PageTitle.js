@@ -4,7 +4,7 @@ import React from "react";
 function PageTitle({ title }) {
   return (
     <Head>
-      <title>{title} | FazzPay</title>
+      <title>{`${title} | FazzPay`}</title>
       <meta
         name="description"
         content={`${title} of Z-Wallet, a money transfer app`}
