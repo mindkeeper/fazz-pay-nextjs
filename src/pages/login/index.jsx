@@ -11,7 +11,7 @@ export default function Login() {
   const [body, setBody] = useState({});
   //   const auth = useSelector((state) => state.auth);
 
-  const checkEmptyForm = () => {
+  const checkEmptyForm = (body) => {
     if (!body.email || !body.password) return setEmptyForm(true);
     body.email && body.password && setEmptyForm(false);
   };
@@ -21,7 +21,7 @@ export default function Login() {
     setBody({ ...body, [e.target.name]: e.target.value });
 
   useEffect(() => {
-    checkEmptyForm();
+    checkEmptyForm(body);
   }, [body]);
 
   return (
@@ -69,11 +69,7 @@ export default function Login() {
               Forgot password?
             </Link>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={emptyForm}
-          >
+          <button type="submit" disabled={emptyForm}>
             Login
           </button>
           <div className={styles["link-blue"]}>
