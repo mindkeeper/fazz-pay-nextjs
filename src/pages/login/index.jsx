@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Layout from "src/common/components/LayoutAuth";
@@ -11,14 +11,18 @@ export default function Login() {
   const [body, setBody] = useState({});
   //   const auth = useSelector((state) => state.auth);
 
-  const checkEmptyForm = () =>
-    body.email && body.password && setEmptyForm(!emptyForm);
-
+  const checkEmptyForm = () => {
+    if (!body.email || !body.password) return setEmptyForm(true);
+    body.email && body.password && setEmptyForm(false);
+  };
   const togglePassword = () => setShowPassword(!showPassword);
 
   const changeHandler = (e) =>
     setBody({ ...body, [e.target.name]: e.target.value });
 
+  useEffect(() => {
+    checkEmptyForm();
+  }, [body]);
   console.log(body);
   return (
     <>
@@ -65,7 +69,11 @@ export default function Login() {
               Forgot password?
             </Link>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={emptyForm}
+          >
             Login
           </button>
           <div className={styles["link-blue"]}>
