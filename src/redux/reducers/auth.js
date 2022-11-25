@@ -31,7 +31,6 @@ const authReducer = (prevState = initialState, { payload, type }) => {
     case authRegister.concat("_", Fulfilled):
       return {
         ...prevState,
-        isFulfilled: true,
         isLoading: false,
       };
 
