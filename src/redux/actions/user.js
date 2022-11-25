@@ -177,14 +177,16 @@ const editImageThunk = (token, id, body) => {
   };
 };
 
-const editPinThunk = (token, id, body) => {
+const editPinThunk = (token, id, body, cbSuccess, cbDenied) => {
   return async (dispatch) => {
     try {
       dispatch(editPinPending());
       const result = await editPin(token, id, body);
       dispatch(editPinFulfilled(result.data));
+      typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(editPinRejected(error));
+      typeof cbDenied === "function" && cbDenied();
     }
   };
 };
