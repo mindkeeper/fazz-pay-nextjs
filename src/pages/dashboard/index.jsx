@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "src/common/components/Navbar";
 import Sidebar from "src/common/components/Sidebar";
 import Footer from "src/common/components/Footer";
 import styles from "src/common/styles/Dashboard.module.css";
-import user from "public/images/1.png";
-import user2 from "public/images/image.png";
 import { useRouter } from "next/router";
 import PageTitle from "src/common/components/PageTitle";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import historyAction from "src/redux/actions/history";
+import Card from "src/common/components/CardHistory";
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const router = useRouter();
+  const auth = useSelector((state) => state.auth);
+  const history = useSelector((state) => state.history);
+
+  const [query, setQuery] = useState({ page: 1, limit: 4, filter: "WEEK" });
   const currency = (price) => {
     return (
       "RP. " +
@@ -21,6 +26,11 @@ function Dashboard() {
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
     );
   };
+
+  useEffect(() => {
+    dispatch(historyAction.getHistoryThunk(auth.userData.token, query));
+  }, []);
+  console.log(history.data);
   return (
     <>
       <PageTitle title="Dashboard" />
@@ -149,54 +159,9 @@ function Dashboard() {
                       See all
                     </p>
                   </div>
-                  <div className={styles["card"]}>
-                    <div className={styles["image-name"]}>
-                      <Image src={user} alt="user" width={56} height={56} />
-                      <div>
-                        <p className={styles["username"]}>Samuel Suhi</p>
-                        <p className={styles.status}>Accept</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={styles.recive}>+Rp50.000</p>
-                    </div>
-                  </div>
-                  <div className={styles["card"]}>
-                    <div className={styles["image-name"]}>
-                      <Image src={user2} alt="user" width={56} height={56} />
-                      <div>
-                        <p className={styles["username"]}>Samuel Suhi</p>
-                        <p className={styles.status}>Transfer</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={styles.paid}>-Rp149.000</p>
-                    </div>
-                  </div>
-                  <div className={styles["card"]}>
-                    <div className={styles["image-name"]}>
-                      <Image src={user} alt="user" width={56} height={56} />
-                      <div>
-                        <p className={styles["username"]}>Samuel Suhi</p>
-                        <p className={styles.status}>Accept</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={styles.recive}>+Rp50.000</p>
-                    </div>
-                  </div>
-                  <div className={styles["card"]}>
-                    <div className={styles["image-name"]}>
-                      <Image src={user2} alt="user" width={56} height={56} />
-                      <div>
-                        <p className={styles["username"]}>Samuel Suhi</p>
-                        <p className={styles.status}>Transfer</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className={styles.paid}>-Rp149.000</p>
-                    </div>
-                  </div>
+                  {history?.data?.map((data, index) => {
+                    return <Card data={data} key={index} />;
+                  })}
                 </div>
               </div>
             </aside>
