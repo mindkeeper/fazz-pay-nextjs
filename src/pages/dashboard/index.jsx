@@ -17,7 +17,7 @@ function Dashboard() {
   const auth = useSelector((state) => state.auth);
   const history = useSelector((state) => state.history);
 
-  const [query, setQuery] = useState({ page: 1, limit: 4, filter: "WEEK" });
+  const [query, setQuery] = useState({ page: 1, limit: 10, filter: "WEEK" });
   const currency = (price) => {
     return (
       "RP. " +
@@ -34,7 +34,7 @@ function Dashboard() {
   return (
     <>
       <PageTitle title="Dashboard" />
-      <Navbar>
+      <Navbar history={history.data}>
         <div className={styles.container}>
           <div className={`col-lg-3 ${styles.onMobile}`}>
             <Sidebar />
@@ -159,9 +159,13 @@ function Dashboard() {
                       See all
                     </p>
                   </div>
-                  {history?.data?.map((data, index) => {
-                    return <Card data={data} key={index} />;
-                  })}
+                  {history?.data.length < 1 ? (
+                    <p>No transaction yet</p>
+                  ) : (
+                    history?.data?.map((data, index) => {
+                      if (index < 4) return <Card data={data} key={index} />;
+                    })
+                  )}
                 </div>
               </div>
             </aside>
