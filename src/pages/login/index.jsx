@@ -8,6 +8,7 @@ import authAction from "src/redux/actions/auth";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import userAction from "src/redux/actions/user";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function Login() {
   const loginSuccess = () => {
     if (!auth.pin)
       return toast.success(`Login Success! Please Create Your Pin`);
-    return toast.success(`Login Success! welcome ${body.email}`);
+    toast.success(`Login Success! welcome ${body.email}`);
   };
 
   const loginDenied = () => toast.error(`Login Failed: ${auth.error}`);
@@ -46,8 +47,11 @@ export default function Login() {
   useEffect(() => {
     if (auth.isLoading) setEmptyForm(true);
     if (auth.isFulfilled) {
+      dispatch(
+        userAction.getUserDetailThunk(auth.userData.token, auth.userData.id)
+      );
       if (!auth.userData.pin) router.push("/createpin");
-      if (auth.userData.pin) console.log("directed to dashboard");
+      if (auth.userData.pin) router.push("/dashboard");
     }
   }, [auth]);
 
