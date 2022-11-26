@@ -2,14 +2,6 @@ import axios from "axios";
 
 const baseUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth`;
 
-const coonfig = (token) => {
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-};
-
 export const register = (body) => axios.post(`${baseUrl}/register`, body);
 
 export const login = (body) => axios.post(`${baseUrl}/login`, body);
