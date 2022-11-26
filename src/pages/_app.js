@@ -1,5 +1,6 @@
-import "styles/globals.css";
+import "src/common/styles/globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store, { persistedStore } from "src/redux/store";
 import { ToastContainer } from "react-toastify";
