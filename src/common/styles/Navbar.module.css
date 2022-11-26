@@ -44,8 +44,8 @@
 
 .img-container {
   position: relative;
-  height: 5rem;
-  width: 5rem;
+  height: 3.5rem;
+  width: 3.5rem;
   border-radius: 1rem;
   overflow: hidden;
 }
@@ -89,11 +89,15 @@
   padding: 1rem;
   border-radius: 10px;
   display: flex;
+  align-items: center;
   gap: 1rem;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+.card div {
+  line-height: 15px;
 }
 
 .name {
@@ -106,6 +110,17 @@
   font-weight: 700;
   font-size: 18px;
   color: #43484f;
+}
+
+.green {
+  color: var(--green);
+  font-size: 30px;
+  margin-bottom: 0.5rem;
+}
+.red {
+  color: var(--red);
+  font-size: 30px;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 567px) {

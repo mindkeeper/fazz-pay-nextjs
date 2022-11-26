@@ -5,11 +5,21 @@ import styles from "src/common/styles/Navbar.module.css";
 import Sidebar from "src/common/components/sidebar";
 import { useSelector } from "react-redux";
 
-function Navbar({ children }) {
+function Navbar({ children, history }) {
   const [show, setShow] = useState(false);
   const profile = useSelector((state) => state.user.profile);
   const link = process.env.CLOUDINARY_LINK;
+  const received = `${styles["green"]} fa-solid fa-arrow-down`;
+  const sent = `${styles["red"]} fa-solid fa-arrow-up`;
 
+  const currency = (price) => {
+    return (
+      "Rp. " +
+      parseFloat(price)
+        .toFixed()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+    );
+  };
   const notifHandler = (e) => {
     e.preventDefault();
     setShow(!show);
@@ -41,7 +51,9 @@ function Navbar({ children }) {
             </div>
             <div className={styles["name-phone"]}>
               <p className={styles["greating"]}>Hello,</p>
-              <p className={styles["navbar-name"]}>Robert Chandler</p>
+              <p
+                className={styles["navbar-name"]}
+              >{`${profile.firstName} ${profile.lastName}`}</p>
               {/* <p className={styles["navbar-phone"]}>+62 8139 3877 7946</p> */}
             </div>
           </div>
@@ -77,118 +89,31 @@ function Navbar({ children }) {
       {show && (
         <>
           <div className={styles.modal}>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-down"
-                style={{
-                  color: "#1EC15F",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Accept from Joshua Lee</p>
-                <p className={styles["price"]}>Rp220.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-up"
-                style={{
-                  color: "#FF5B37",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Transfer to Deni</p>
-                <p className={styles["price"]}>Rp149.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-down"
-                style={{
-                  color: "#1EC15F",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Accept from Joshua Lee</p>
-                <p className={styles["price"]}>Rp220.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-up"
-                style={{
-                  color: "#FF5B37",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Transfer to Deni</p>
-                <p className={styles["price"]}>Rp149.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-down"
-                style={{
-                  color: "#1EC15F",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Accept from Joshua Lee</p>
-                <p className={styles["price"]}>Rp220.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-up"
-                style={{
-                  color: "#FF5B37",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Transfer to Deni</p>
-                <p className={styles["price"]}>Rp149.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-down"
-                style={{
-                  color: "#1EC15F",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Accept from Joshua Lee</p>
-                <p className={styles["price"]}>Rp220.000</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <i
-                className="fa-solid fa-arrow-up"
-                style={{
-                  color: "#FF5B37",
-                  fontSize: "30px",
-                  marginBottom: "0.5rem",
-                }}
-              ></i>
-              <div style={{ lineHeight: "15px" }}>
-                <p className={styles["name"]}>Transfer to Deni</p>
-                <p className={styles["price"]}>Rp149.000</p>
-              </div>
-            </div>
+            {history?.length < 1 ? (
+              <p>No transaction yet</p>
+            ) : (
+              history?.map((data, index) => {
+                return (
+                  <>
+                    <div className={styles.card}>
+                      <i className={data.type === "send" ? sent : received}></i>
+                      <div>
+                        <p className={styles["name"]}>
+                          {data.type === "send"
+                            ? `Transfer to ${data.fullName}`
+                            : data.type === "topup"
+                            ? `Top up`
+                            : `Accept from ${data.fullName}`}
+                        </p>
+                        <p className={styles["price"]}>
+                          {currency(data.amount)}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                );
+              })
+            )}
           </div>
         </>
       )}
