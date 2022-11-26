@@ -94,10 +94,10 @@ export default function CreatePin() {
             Confirm Your Pin
           </p>
           <div className={styles[showConfirmInput ? "hide" : "code-wrapper"]}>
-            <ReactCodeInput type="password" fields={6} onChange={handlerPin1} />
+            <ReactCodeInput type="text" fields={6} onChange={handlerPin1} />
           </div>
           <div className={styles[showConfirmInput ? "code-wrapper" : "hide"]}>
-            <ReactCodeInput type="password" fields={6} onChange={handlerPin2} />
+            <ReactCodeInput type="text" fields={6} onChange={handlerPin2} />
           </div>
           <button type="submit" disabled={emptypin}>
             Confirm
