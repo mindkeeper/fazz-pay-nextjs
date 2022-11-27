@@ -8,7 +8,6 @@ import authAction from "src/redux/actions/auth";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import userAction from "src/redux/actions/user";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ export default function Login() {
     toast.success(`Login Success! welcome ${body.email}`);
   };
 
-  const loginDenied = () => toast.error(`Login Failed: ${auth.error}`);
+  const loginDenied = (errorMsg) => toast.error(`Login Failed: ${errorMsg}`);
   const changeHandler = (e) =>
     setBody({ ...body, [e.target.name]: e.target.value });
 
