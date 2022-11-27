@@ -5,13 +5,13 @@ import styles from "src/common/styles/Navbar.module.css";
 import Sidebar from "src/common/components/sidebar";
 import { useSelector } from "react-redux";
 
-function Navbar({ children, history }) {
+function Navbar({ children }) {
   const [show, setShow] = useState(false);
   const profile = useSelector((state) => state.user.profile);
   const link = process.env.CLOUDINARY_LINK;
   const received = `${styles["green"]} fa-solid fa-arrow-down`;
   const sent = `${styles["red"]} fa-solid fa-arrow-up`;
-
+  const history = useSelector((state) => state.history.data);
   const currency = (price) => {
     return (
       "Rp. " +
