@@ -9,6 +9,7 @@ import PageTitle from "src/common/components/PageTitle";
 import { useDispatch, useSelector } from "react-redux";
 import historyAction from "src/redux/actions/history";
 import Card from "src/common/components/CardHistory";
+import userAction from "src/redux/actions/user";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function Dashboard() {
   const auth = useSelector((state) => state.auth);
   const history = useSelector((state) => state.history);
 
-  const [query, setQuery] = useState({ page: 1, limit: 10, filter: "WEEK" });
+  const [query, setQuery] = useState({ page: 1, limit: 10, filter: "MONTH" });
   const currency = (price) => {
     return (
       "RP. " +
@@ -28,8 +29,11 @@ function Dashboard() {
   };
 
   useEffect(() => {
+    dispatch(
+      userAction.getUserDetailThunk(auth.userData.token, auth.userData.id)
+    );
     dispatch(historyAction.getHistoryThunk(auth.userData.token, query));
-  }, []);
+  }, [historyAction.getHistoryThunk]);
   console.log(history.data);
   return (
     <>
@@ -153,13 +157,13 @@ function Dashboard() {
                     <p
                       className={styles["seall"]}
                       onClick={() => {
-                        router.push("dashboard/history");
+                        router.push("/history");
                       }}
                     >
                       See all
                     </p>
                   </div>
-                  {history?.data.length < 1 ? (
+                  {history?.data?.length < 1 ? (
                     <p>No transaction yet</p>
                   ) : (
                     history?.data?.map((data, index) => {
