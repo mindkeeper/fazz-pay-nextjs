@@ -14,13 +14,13 @@ function Sidebar() {
   const [selectProfile, setProfile] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
-  const errorMsg = useSelector((state) => state.auth.logoutMsg);
+
   const [show, setShow] = useState(false);
 
   const logoutHandler = () => {
     dispatch(
       authAction.logoutThunk(() => {
-        toast.success(`${errorMsg}`);
+        toast.success(`Logout Success`);
         router.push("/login");
       })
     );
