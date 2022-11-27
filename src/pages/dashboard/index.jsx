@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import historyAction from "src/redux/actions/history";
 import Card from "src/common/components/CardHistory";
 import userAction from "src/redux/actions/user";
+import Modal from "src/common/components/ModalTopUp";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function Dashboard() {
   const router = useRouter();
   const auth = useSelector((state) => state.auth);
   const history = useSelector((state) => state.history);
+  const [showModal, setShowModal] = useState(false);
 
   const [query, setQuery] = useState({ page: 1, limit: 10, filter: "MONTH" });
   const currency = (price) => {
@@ -27,17 +29,26 @@ function Dashboard() {
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
     );
   };
-
+  const modalControl = () => setShowModal(!showModal);
   useEffect(() => {
     dispatch(
       userAction.getUserDetailThunk(auth.userData.token, auth.userData.id)
     );
     dispatch(historyAction.getHistoryThunk(auth.userData.token, query));
-  }, [historyAction.getHistoryThunk]);
-  console.log(history.data);
+  }, []);
+
+  useEffect(() => {
+    console.log(showModal);
+  }, [showModal]);
+
   return (
     <>
       <PageTitle title="Dashboard" />
+      <Modal
+        open={showModal}
+        setOpen={setShowModal}
+        token={auth.userData.token}
+      />
       <Navbar history={history.data}>
         <div className={styles.container}>
           <div className={`col-lg-3 ${styles.onMobile}`}>
@@ -49,14 +60,14 @@ function Dashboard() {
                 <div className={styles["top-left"]}>
                   <p className={styles.balance}>Balance</p>
                   <p className={styles.price}>{currency(profile.balance)}</p>
-                  <p className={styles.phone}>+62 813-9387-7946</p>
+                  <p className={styles.phone}>{profile.noTelp}</p>
                 </div>
                 <div className={`${styles["top-btn"]} ${styles.btnHide}`}>
                   <div className={styles.btn}>
                     <i className="fa-sharp fa-solid fa-arrow-up"></i>
                     <p>Transfer</p>
                   </div>
-                  <div className={styles.btn}>
+                  <div className={styles.btn} onClick={modalControl}>
                     <i className="fa-solid fa-plus"></i>
                     <p>Top Up</p>
                   </div>
@@ -67,7 +78,7 @@ function Dashboard() {
                   <i className="fa-sharp fa-solid fa-arrow-up"></i>
                   <p>Transfer</p>
                 </div>
-                <div className={styles.btn}>
+                <div className={styles.btn} onClick={modalControl}>
                   <i className="fa-solid fa-plus"></i>
                   <p>Top Up</p>
                 </div>
