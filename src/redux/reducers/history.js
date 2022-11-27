@@ -6,6 +6,7 @@ const initialState = {
   isError: false,
   error: false,
   history: [],
+  pagination: {},
 };
 
 const historyReducer = (prevState = initialState, { type, payload }) => {
@@ -27,6 +28,7 @@ const historyReducer = (prevState = initialState, { type, payload }) => {
         ...prevState,
         isLoading: false,
         data: payload.data.data,
+        pagination: payload.data.pagination,
       };
 
     default:
