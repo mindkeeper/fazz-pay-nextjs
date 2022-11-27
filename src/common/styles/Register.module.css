@@ -72,10 +72,12 @@
   background-color: var(--secondary);
   font-weight: 700;
   border-radius: 0.75rem;
+  cursor: pointer;
 }
 .form button:disabled {
   color: var(--disabled-mobile);
   background-color: var(--dark03);
+  cursor: not-allowed;
 }
 .form button:hover {
   opacity: 0.9;
