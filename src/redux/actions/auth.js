@@ -79,17 +79,18 @@ const loginThunk = (body, cbSuccess, cbDenied) => {
       typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(loginRejected(error));
-      typeof cbDenied === "function" && cbDenied();
+      typeof cbDenied === "function" && cbDenied(error.response.data.msg);
     }
   };
 };
 
-const logoutThunk = () => {
+const logoutThunk = (cbSuccess) => {
   return async (dispatch) => {
     try {
       dispatch(logoutPending());
       const result = await logout();
       dispatch(logoutFulfilled(result.data));
+      typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(logoutRejected(error));
     }
@@ -105,7 +106,7 @@ const registerThunk = (body, cbSuccess, cbDenied) => {
       typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(registerRejected(error));
-      typeof cbDenied === "function" && cbDenied();
+      typeof cbDenied === "function" && cbDenied(error.response.data.msg);
     }
   };
 };
