@@ -25,10 +25,9 @@ export default function Login() {
   };
   const togglePassword = () => setShowPassword(!showPassword);
 
-  const loginSuccess = () => {
-    if (!auth.pin)
-      return toast.success(`Login Success! Please Create Your Pin`);
-    toast.success(`Login Success! welcome ${body.email}`);
+  const loginSuccess = (pin) => {
+    if (!pin) return toast.success(`Login Success! Please Create Your Pin`);
+    return toast.success(`Login Success! welcome ${body.email}`);
   };
 
   const loginDenied = (errorMsg) => toast.error(`Login Failed: ${errorMsg}`);
