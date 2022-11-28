@@ -17,4 +17,8 @@ export const ACTION_STRING = {
   pending: "_PENDING",
   rejected: "_REJECTED",
   fulfilled: "_FULFILLED",
+  resetTransfer: "TRANSFER_RESET",
+  transferData: "TRANSFER_DATA",
+  transfer: "TRANSFER",
+  getStatistic: "GET_STATISTIC",
 };
