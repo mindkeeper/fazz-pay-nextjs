@@ -14,7 +14,7 @@ export const getDetailUser = (token, id) =>
   axios.get(`${baseUrl}/profile/${id}`, config(token));
 
 export const checkPin = (token, pin) =>
-  axios.get(`${baseUrl}/pin?pin=${pin}`, config(token));
+  axios.get(`${baseUrl}/pin/${pin}`, config(token));
 
 export const editProfile = (token, id, body) =>
   axios.patch(`${baseUrl}/profile/${id}`, body, config(token));
