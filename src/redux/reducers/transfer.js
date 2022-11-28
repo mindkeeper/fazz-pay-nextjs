@@ -29,12 +29,13 @@ const transferReducer = (prevState = initialState, { payload, type }) => {
         ...prevState,
         transferData: {
           receiverId: payload.data.receiverId,
-          date: payload.data.data,
+          date: payload.data.date,
           amount: payload.data.amount,
           notes: payload.data.notes,
           receiverData: payload.data.receiverData,
         },
       };
+
     case ACTION_STRING.transfer.concat(ACTION_STRING.pending):
       return {
         ...prevState,
@@ -54,6 +55,7 @@ const transferReducer = (prevState = initialState, { payload, type }) => {
           error: payload.error.response.data.msg,
         },
       };
+
     case ACTION_STRING.transfer.concat(ACTION_STRING.fulfilled):
       return {
         ...prevState,

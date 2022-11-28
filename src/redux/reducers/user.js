@@ -139,7 +139,7 @@ const userReducer = (prevState = initialState, { type, payload }) => {
         isError: true,
         isLoading: false,
         isFulfilled: false,
-        error: payload.error.response.data.msg,
+        error: payload.error.msg,
       };
     case userEditImage.concat("_", Fulfilled):
       return {

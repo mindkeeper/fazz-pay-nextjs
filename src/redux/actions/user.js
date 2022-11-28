@@ -153,12 +153,13 @@ const editProfileThunk = (token, id, body) => {
   };
 };
 
-const editPhoneThunk = (token, id, body) => {
+const editPhoneThunk = (token, id, body, cbSuccess) => {
   return async (dispatch) => {
     try {
       dispatch(editPhonePending());
       const result = await editPhone(token, id, body);
       dispatch(editPhoneFulfilled(result.data));
+      typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(editPhoneRejected(error));
     }
@@ -191,14 +192,16 @@ const editPinThunk = (token, id, body, cbSuccess, cbDenied) => {
   };
 };
 
-const editPasswordThunk = (token, id, body) => {
+const editPasswordThunk = (token, id, body, cbSuccess, cbDenied) => {
   return async (dispatch) => {
     try {
       dispatch(editPasswordPending());
       const result = await editPassword(token, id, body);
       dispatch(editPasswordFulfilled(result.data));
+      typeof cbSuccess === "function" && cbSuccess();
     } catch (error) {
       dispatch(editPasswordRejected(error));
+      typeof cbDenied === "function" && cbDenied(error.response.data.msg);
     }
   };
 };

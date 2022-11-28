@@ -19,7 +19,7 @@ const topUpReducer = (prevState = initialState, { payload, type }) => {
       return {
         isLoading: false,
         isError: true,
-        error: payload.response.data.msg,
+        error: payload.error.response.data.msg,
       };
 
     case topUp.concat(fulfilled):

@@ -76,7 +76,7 @@ const loginThunk = (body, cbSuccess, cbDenied) => {
       dispatch(loginPending());
       const result = await login(body);
       dispatch(loginFulfilled(result.data));
-      typeof cbSuccess === "function" && cbSuccess();
+      typeof cbSuccess === "function" && cbSuccess(result.data.data.pin);
     } catch (error) {
       dispatch(loginRejected(error));
       typeof cbDenied === "function" && cbDenied(error.response.data.msg);
