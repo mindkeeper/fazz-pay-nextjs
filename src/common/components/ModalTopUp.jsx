@@ -1,11 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import styles from "src/common/styles/ModalTopUp.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import topUpAction from "src/redux/actions/topUp";
 
-const ModalTopUp = ({ setOpen, open, token }) => {
+const ModalTopUp = ({ setOpen, open }) => {
+  const token = useSelector((state) => state.auth.userData.token);
   const dispatch = useDispatch();
   const [body, setBody] = useState({});
 
