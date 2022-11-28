@@ -8,6 +8,7 @@ import authAction from "src/redux/actions/auth";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import userAction from "src/redux/actions/user";
 
 export default function Login() {
   const dispatch = useDispatch();
