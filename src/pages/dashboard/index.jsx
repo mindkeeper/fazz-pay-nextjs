@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { currency as currencyComma } from "src/modules/helpers/currency";
 import Navbar from "src/common/components/Navbar";
 import Sidebar from "src/common/components/Sidebar";
 import Footer from "src/common/components/Footer";
@@ -11,14 +11,26 @@ import historyAction from "src/redux/actions/history";
 import Card from "src/common/components/CardHistory";
 import userAction from "src/redux/actions/user";
 import Modal from "src/common/components/ModalTopUp";
+import dashboardAction from "src/redux/actions/dashboard";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 function Dashboard() {
+  ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const router = useRouter();
   const auth = useSelector((state) => state.auth);
   const history = useSelector((state) => state.history);
   const [showModal, setShowModal] = useState(false);
+  const statistic = useSelector((state) => state.dashboard.data);
 
   const [query, setQuery] = useState({ page: 1, limit: 10, filter: "MONTH" });
   const currency = (price) => {
@@ -30,17 +42,77 @@ function Dashboard() {
     );
   };
   const modalControl = () => setShowModal(!showModal);
+
   useEffect(() => {
     dispatch(
       userAction.getUserDetailThunk(auth.userData.token, auth.userData.id)
     );
     dispatch(historyAction.getHistoryThunk(auth.userData.token, query));
+    dispatch(
+      dashboardAction.statisticThunk(auth.userData.token, auth.userData.id)
+    );
   }, []);
 
-  useEffect(() => {
-    console.log(showModal);
-  }, [showModal]);
+  const incomeData = {
+    label: "Income",
+    data: statistic.listIncome
+      ? [
+          statistic.listIncome[5].total,
+          statistic.listIncome[6].total,
+          statistic.listIncome[0].total,
+          statistic.listIncome[1].total,
+          statistic.listIncome[2].total,
+          statistic.listIncome[3].total,
+          statistic.listIncome[4].total,
+        ]
+      : [],
+    backgroundColor: "#6379F4",
+  };
 
+  const expenseData = {
+    label: "Expense",
+    data: statistic.listExpense
+      ? [
+          statistic.listExpense[5].total,
+          statistic.listExpense[6].total,
+          statistic.listExpense[0].total,
+          statistic.listExpense[1].total,
+          statistic.listExpense[2].total,
+          statistic.listExpense[3].total,
+          statistic.listExpense[4].total,
+        ]
+      : [],
+    backgroundColor: "#9DA6B5",
+  };
+
+  const data = {
+    labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+    datasets: [incomeData, expenseData],
+  };
+
+  const chartOptions = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false,
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+    legend: {
+      label: {
+        fontSize: 14,
+        fontFamily: "Nunito Sans",
+      },
+    },
+  };
+  console.log(expenseData);
   return (
     <>
       <PageTitle title="Dashboard" />
@@ -103,7 +175,7 @@ function Dashboard() {
                           marginTop: "0.5rem",
                         }}
                       >
-                        Rp2.120.000
+                        {`Rp. ${currencyComma(statistic.totalIncome)}`}
                       </p>
                     </div>
                     <div>
@@ -123,44 +195,12 @@ function Dashboard() {
                           marginTop: "0.5rem",
                         }}
                       >
-                        Rp1.560.000
+                        {`Rp. ${currencyComma(statistic.totalExpense)}`}
                       </p>
                     </div>
                   </div>
-                  <div className={styles["left-middle"]}>
-                    <p className={styles["plus"]}>+Rp65.000</p>
-                    <div className={styles["static"]}>
-                      <div className={styles.sat}></div>
-                      <p>Sat</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.sun}></div>
-                      <p>Sun</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.mon}></div>
-                      <p>Mon</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.tue}>
-                        <div className={styles.circle}></div>
-                        <div className={styles["circle-blue"]}></div>
-                      </div>
-                      <p>Tue</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.wed}></div>
-                      <p>Wed</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.thu}></div>
-                      <p>Thu</p>
-                    </div>
-                    <div className={styles["static"]}>
-                      <div className={styles.fri}></div>
-                      <p>Fri</p>
-                    </div>
-                  </div>
+                  {/* <div className={styles["left-middle"]}></div> */}
+                  <Bar data={data} options={chartOptions} />
                 </aside>
                 <div className={styles["bottom-right"]}>
                   <div className={styles["right-top"]}>
