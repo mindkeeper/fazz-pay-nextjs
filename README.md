@@ -6,16 +6,15 @@
 [![react-router-dom](https://img.shields.io/npm/v/react-router-dom?label=react-router-dom)](https://www.npmjs.com/package/react-router-dom)
 [![axios](https://img.shields.io/npm/v/axios?label=axios)](https://www.npmjs.com/package/axios)
 [![chart.js](https://img.shields.io/npm/v/chart.js?label=chart.js)](https://www.npmjs.com/package/chart.js)
-[![craco](https://img.shields.io/npm/v/craco?label=craco)](https://www.npmjs.com/package/craco)
-[![lottie-react](https://img.shields.io/npm/v/lottie-react?label=lottie-react)](https://www.npmjs.com/package/lottie-react)
-[![moment](https://img.shields.io/npm/v/moment?label=moment)](https://www.npmjs.com/package/moment)
+[![react-chartjs-2](https://img.shields.io/badge/react--chartjs--2-5.0.1-blue)](https://www.npmjs.com/package/craco)
 [![redux](https://img.shields.io/npm/v/redux?label=redux)](https://www.npmjs.com/package/redux)
+[![bootstrap](https://img.shields.io/badge/bootstrap-%5E5.2.3-blue)](https://www.npmjs.com/package/bootstrap)
+[![toastify](https://img.shields.io/badge/toastify-%5E9.1.1-blue)](https://www.npmjs.com/package/react-toastify)
 
 <br/>
 
 </div>
-
-Violet coffee shop is a web application that can make it easier for customer to order food and beverages from coffee shop. Customer can simply register, login, see products, order, see order history, edit their profile, etc.
+Fazzpay is a E-Wallet app that can make it easier for customer to transfer their money. Customer can simply register, login, transfer or top up their money and see their transaction history. they also can see and edit their profile
 
 ## Contents
 
@@ -89,7 +88,7 @@ You may also see any lint errors in the console.
 
 <img width="500" src="public/images/landing-page.png" alt="Login page">
 
-<img width="500" src="public/images/profile-ss.png" alt="Dashboard">
+<img width="500" src="public/images/login-ss.png" alt="Dashboard">
 
 <img width="500" src="public/images/transfer.png" alt="Transfer history">
 </div>
