@@ -8,7 +8,11 @@ function Card({ data }) {
   const link = process.env.CLOUDINARY_LINK;
 
   return (
-    <Link href={`/transfer/amount?receiver=${data.id}`} passHref>
+    <Link
+      href={`/transfer/amount?receiver=${data.id}`}
+      passHref
+      style={{ textDecoration: "none" }}
+    >
       <div className={styles["card"]}>
         <div className={styles["image-name"]}>
           <Image
