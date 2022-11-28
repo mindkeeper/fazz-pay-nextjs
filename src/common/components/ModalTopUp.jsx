@@ -1,20 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import styles from "src/common/styles/ModalTopUp.module.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import topUpAction from "src/redux/actions/topUp";
-import Link from "next/link";
 
 const ModalTopUp = ({ setOpen, open, token }) => {
   const dispatch = useDispatch();
   const [body, setBody] = useState({});
-  const directedLink = useSelector((state) => state.topUp.redirectUrl);
-  const linkRef = useRef(null);
+
   const changeHandler = (e) =>
     setBody({ ...body, [e.target.name]: e.target.value });
 
-  const topUpSuccess = () => {
+  const topUpSuccess = (directedLink) => {
     setOpen(!open);
     toast.success("Redirecting you to payment page");
     window.open(`${directedLink}`, "_blank");
