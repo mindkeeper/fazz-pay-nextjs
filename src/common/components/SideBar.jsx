@@ -14,11 +14,14 @@ function Sidebar() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const logoutSuccess = () => {
     toast.success(`Logout Success`);
     router.push("/login");
   };
+
+  const handleModal = () => setOpenModal(!openModal);
   const logoutHandler = (e) => {
     e.preventDefault();
     dispatch(authAction.logoutThunk(logoutSuccess));
@@ -146,7 +149,7 @@ function Sidebar() {
               </p>
             </div>
 
-            <div className={styles.logout} onClick={logoutHandler}>
+            <div className={styles.logout} onClick={handleModal}>
               <i className="fa-solid fa-arrow-right-from-bracket"></i>
               <p className={styles["close"]}>Logout</p>
             </div>
@@ -210,12 +213,32 @@ function Sidebar() {
           <p className={`${styles.textDasboard} ${styles.close}`}>Profile</p>
         </div>
 
-        <div className={styles.logout} onClick={logoutHandler}>
+        <div className={styles.logout} onClick={handleModal}>
           <i className="fa-solid fa-arrow-right-from-bracket"></i>
           <p className={styles["close"]}>Logout</p>
         </div>
       </div>
       <Modal open={showModal} setOpen={setShowModal} />
+      {openModal && (
+        <div className={styles.modal}>
+          <div className={styles["modal-container"]}>
+            <div className={styles["title-modal"]}>
+              <p>Logout</p>
+            </div>
+            <div className={styles.ask}>
+              <p>Are you sure want to logout?</p>
+            </div>
+            <div className={styles["container-btn"]}>
+              <div className={`${styles.btn}`} onClick={logoutHandler}>
+                <p>YES</p>
+              </div>
+              <div className={styles["btn-close"]} onClick={handleModal}>
+                <p>NO</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
