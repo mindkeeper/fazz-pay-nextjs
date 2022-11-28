@@ -59,8 +59,8 @@
   color: var(--secondary);
 }
 .confirm:active {
-  background-color: #6a4029;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 .input-amount {
   width: 80%;
