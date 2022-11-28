@@ -17,7 +17,7 @@ function History() {
   const totalPage = useSelector((state) => state.history.pagination.totalPage);
   const [query, setQuery] = useState({
     page: 1,
-    limit: 4,
+    // limit: 4,
     filter: "MONTH",
   });
   const [filter, setFilter] = useState(false);
@@ -25,7 +25,7 @@ function History() {
   const [dataFound, setDataFound] = useState(false);
 
   useEffect(() => {
-    router.push(`/history?page=${query.page}filter=${query.filter}`);
+    router.push(`/history?page=${query.page}&filter=${query.filter}`);
     dispatch(historyAction.getHistoryThunk(auth.userData.token, query));
     if (history?.data.length > 0) setDataFound(true);
   }, [query]);
@@ -63,10 +63,9 @@ function History() {
                       filter ? styles.filterDownOn2 : styles.filterDownOff
                     }
                     onClick={() => {
-                      setQuery({ ...query, filter: "WEEK" });
+                      setQuery({ ...query, page: 1, filter: "WEEK" });
                       setfilterSelect("Week");
                       setFilter(false);
-                      //   router.push("history?filter=WEEK");
                     }}
                   >
                     Week
@@ -76,11 +75,10 @@ function History() {
                       filter ? styles.filterDownOn2 : styles.filterDownOff
                     }
                     onClick={() => {
-                      setQuery({ ...query, filter: "MONTH" });
+                      setQuery({ ...query, page: 1, filter: "MONTH" });
                       setfilterSelect("Month");
 
                       setFilter(false);
-                      //   router.push("history?filter=MONTH");
                     }}
                   >
                     Month
@@ -90,10 +88,9 @@ function History() {
                       filter ? styles.filterDownOn2 : styles.filterDownOff
                     }
                     onClick={() => {
-                      setQuery({ ...query, filter: "YEAR" });
+                      setQuery({ ...query, page: 1, filter: "YEAR" });
                       setfilterSelect("Year");
                       setFilter(false);
-                      //   router.push("history?filter=YEAR");
                     }}
                   >
                     Year
