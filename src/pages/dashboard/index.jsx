@@ -24,6 +24,7 @@ import {
 
 function Dashboard() {
   ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const router = useRouter();
@@ -116,11 +117,7 @@ function Dashboard() {
   return (
     <>
       <PageTitle title="Dashboard" />
-      <Modal
-        open={showModal}
-        setOpen={setShowModal}
-        token={auth.userData.token}
-      />
+      <Modal open={showModal} setOpen={setShowModal} />
       <Navbar history={history.data}>
         <div className={styles.container}>
           <div className={`col-lg-3 ${styles.onMobile}`}>
@@ -199,7 +196,6 @@ function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  {/* <div className={styles["left-middle"]}></div> */}
                   <Bar data={data} options={chartOptions} />
                 </aside>
                 <div className={styles["bottom-right"]}>
