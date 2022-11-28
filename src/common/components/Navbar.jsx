@@ -4,6 +4,7 @@ import defaultImg from "public/images/default.jpg";
 import styles from "src/common/styles/Navbar.module.css";
 import Sidebar from "src/common/components/sidebar";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 function Navbar({ children }) {
   const [show, setShow] = useState(false);
@@ -12,6 +13,7 @@ function Navbar({ children }) {
   const received = `${styles["green"]} fa-solid fa-arrow-down`;
   const sent = `${styles["red"]} fa-solid fa-arrow-up`;
   const history = useSelector((state) => state.history.data);
+  const router = useRouter();
   const currency = (price) => {
     return (
       "Rp. " +
@@ -36,7 +38,9 @@ function Navbar({ children }) {
           <div className={styles["on-mobile"]} onClick={sidebarHandler}>
             <Sidebar />
           </div>
-          <p className={styles.title}>FazzPay</p>
+          <p onClick={() => router.push("/dashboard")} className={styles.title}>
+            FazzPay
+          </p>
         </div>
         <div className={styles["navbar-right"]}>
           <div className={styles["mobile"]}>
@@ -47,12 +51,14 @@ function Navbar({ children }) {
                 style={{ cursor: "pointer" }}
                 layout="fill"
                 objectFit="cover"
+                onClick={() => router.push("/profile")}
               />
             </div>
             <div className={styles["name-phone"]}>
               <p className={styles["greating"]}>Hello,</p>
               <p
                 className={styles["navbar-name"]}
+                onClick={() => router.push("/profile")}
               >{`${profile.firstName} ${profile.lastName}`}</p>
               {/* <p className={styles["navbar-phone"]}>+62 8139 3877 7946</p> */}
             </div>
@@ -65,11 +71,13 @@ function Navbar({ children }) {
                 style={{ cursor: "pointer" }}
                 layout="fill"
                 objectFit="cover"
+                onClick={() => router.push("/profile")}
               />
             </div>
             <div className={styles["name-phone"]}>
               <p
                 className={styles["navbar-name"]}
+                onClick={() => router.push("/profile")}
               >{`${profile.firstName} ${profile.lastName}`}</p>
               <p className={styles["navbar-phone"]}>{profile.noTelp}</p>
             </div>
