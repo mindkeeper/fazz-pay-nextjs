@@ -26,12 +26,20 @@ function CardHistory({ data }) {
             height={56}
           />
           <div>
-            <p className={styles["username"]}>{data?.fullName || "dummy"}</p>
-            <p className={styles.status}>{data?.type || "success"}</p>
+            <p className={styles["username"]}>{data?.fullName}</p>
+            <p className={styles.status}>{data?.type}</p>
           </div>
         </div>
         <div>
-          <p className={data.type === "send" ? styles.paid : styles.recive}>
+          <p
+            className={
+              data.type === "send"
+                ? styles.paid
+                : data.status === "pending"
+                ? styles.pending
+                : styles.recive
+            }
+          >
             {currency(data?.amount)}
           </p>
         </div>
