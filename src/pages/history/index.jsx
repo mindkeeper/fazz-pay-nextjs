@@ -17,7 +17,7 @@ function History() {
   const totalPage = useSelector((state) => state.history.pagination.totalPage);
   const [query, setQuery] = useState({
     page: 1,
-    // limit: 4,
+    limit: 4,
     filter: "MONTH",
   });
   const [filter, setFilter] = useState(false);
