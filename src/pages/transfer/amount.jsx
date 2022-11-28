@@ -58,7 +58,7 @@ function Amount() {
   };
   return (
     <>
-      <PageTitle title="Transfer Amount" />;
+      <PageTitle title="Transfer Amount" />
       <Navbar />
       <div className={css.container}>
         <div className={`col-lg-3 ${css.onMobile}`}>
@@ -72,7 +72,7 @@ function Amount() {
             <div className={css["card"]}>
               <div className={css["image-name"]}>
                 <Image
-                  src={`${link}/${receiverData.image}` || defaultImg}
+                  src={`${link}/${receiverData?.image}` || defaultImg}
                   alt="user"
                   width={56}
                   height={56}
