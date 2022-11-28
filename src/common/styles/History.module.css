@@ -363,7 +363,8 @@
 }
 
 .btn-container {
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
   display: flex;
   justify-content: flex-end;
   gap: 2rem;
@@ -422,6 +423,8 @@
     -moz-border-radius: 25px;
     -ms-border-radius: 25px;
     -o-border-radius: 25px;
+    display: flex;
+    flex-direction: column;
   }
 
   .filter {
