@@ -6,24 +6,22 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import authAction from "src/redux/actions/auth";
 import styles from "src/common/styles/SideBar.module.css";
+import Modal from "./ModalTopUp";
 
 function Sidebar() {
-  const [selectDashboard, setDashboard] = useState(true);
-  const [selectTransfer, setTransfer] = useState(false);
-  const [selectTopUp, setTopUp] = useState(false);
-  const [selectProfile, setProfile] = useState(false);
+  const [active, setActive] = useState("Dashboard");
   const dispatch = useDispatch();
   const router = useRouter();
-
+  const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
 
-  const logoutHandler = () => {
-    dispatch(
-      authAction.logoutThunk(() => {
-        toast.success(`Logout Success`);
-        router.push("/login");
-      })
-    );
+  const logoutSuccess = () => {
+    toast.success(`Logout Success`);
+    router.push("/login");
+  };
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    dispatch(authAction.logoutThunk(logoutSuccess));
   };
 
   useEffect(() => {
@@ -32,40 +30,33 @@ function Sidebar() {
       router.pathname.includes("ammount") ||
       router.pathname.includes("confirmation")
     )
-      return setTransfer(true);
-    if (router.pathname.includes("dashboard")) return setDashboard(true);
-    if (router.pathname.includes("profile")) return setProfile(true);
+      setActive("Transfer");
+    if (router.pathname.includes("dashboard")) setActive("Dashboard");
+    if (router.pathname.includes("profile")) setActive("Profile");
   }, []);
 
   const dashboardHandler = (e) => {
     e.preventDefault();
-    setDashboard(true);
-    setTransfer(false);
-    setTopUp(false);
-    setProfile(false);
+    setActive("Dashboard");
+
     router.push("/dashboard");
   };
   const transferHandler = (e) => {
     e.preventDefault();
-    setDashboard(false);
-    setTransfer(true);
-    setTopUp(false);
-    setProfile(false);
-    router.push("/transfer/:username");
+    setActive("Transfer");
+
+    router.push("/transfer");
   };
+
   const topupHandler = (e) => {
     e.preventDefault();
-    setDashboard(false);
-    setTransfer(false);
-    setTopUp(true);
-    setProfile(false);
+    setActive("TopUp");
+    setShowModal(!showModal);
   };
+
   const profileHandler = (e) => {
     e.preventDefault();
-    setDashboard(false);
-    setTransfer(false);
-    setTopUp(false);
-    setProfile(true);
+    setActive("Profile");
     router.push("/profile");
   };
 
@@ -87,70 +78,74 @@ function Sidebar() {
           <div className={styles["toggle-list"]}>
             <div
               className={`${styles.dashboard} ${
-                selectDashboard ? styles.on : undefined
+                active === "Dashboard" && styles.on
               }`}
               onClick={dashboardHandler}
             >
-              {selectDashboard && <div className={styles.rectangle}></div>}
+              {active === "Dashboard" && (
+                <div className={styles.rectangle}></div>
+              )}
               <i
                 className={`bi bi-grid ${styles.icon} ${
-                  selectDashboard ? styles.on : styles.off
+                  active === "Dashboard" ? styles.on : styles.off
                 }`}
               ></i>
               <p className={`${styles.textDasboard}${styles.close}`}>
                 Dashboard
               </p>
             </div>
+
             <div
               className={`${styles.dashboard} ${
-                selectTransfer ? styles.on : undefined
+                active === "Transfer" && styles.on
               }`}
               onClick={transferHandler}
             >
-              {selectTransfer && <div className={styles.rectangle}></div>}
+              {active === "Transfer" && (
+                <div className={styles.rectangle}></div>
+              )}
               <i
                 className={`fa-solid fa-arrow-up ${styles.icon} ${
-                  selectTransfer ? styles.on : styles.off
+                  active === "Transfer" ? styles.on : styles.off
                 }`}
               ></i>
-              <p
-                className={`${styles.textDasboard} onClick={() => {
-                
-              }} ${styles.close}`}
-              >
+              <p className={`${styles.textDasboard}  ${styles.close}`}>
                 Transfer
               </p>
             </div>
+
             <div
               className={`${styles.dashboard} ${
-                selectTopUp ? styles.on : undefined
+                active === "TopUp" && styles.on
               }`}
               onClick={topupHandler}
             >
-              {selectTopUp && <div className={styles.rectangle}></div>}
+              {active === "TopUp" && <div className={styles.rectangle}></div>}
               <i
                 className={`fa-solid fa-plus ${styles.icon} ${
-                  selectTopUp ? styles.on : styles.off
+                  active === "TopUp" ? styles.on : styles.off
                 }`}
               ></i>
               <p className={`${styles.textDasboard} ${styles.close}`}>Top Up</p>
             </div>
+
             <div
               className={`${styles.dashboard} ${
-                selectProfile ? styles.on : undefined
+                active === "Profile" && styles.on
               }`}
               onClick={profileHandler}
             >
-              {selectProfile && <div className={styles.rectangle}></div>}
+              {active === "Profile" && <div className={styles.rectangle}></div>}
               <i
                 className={`fa-regular fa-user ${styles.icon} ${
-                  selectProfile ? styles.on : styles.off
+                  active === "Profile" ? styles.on : styles.off
                 }`}
               ></i>
               <p className={`${styles.textDasboard} ${styles.close}`}>
                 Profile
               </p>
             </div>
+
             <div className={styles.logout} onClick={logoutHandler}>
               <i className="fa-solid fa-arrow-right-from-bracket"></i>
               <p className={styles["close"]}>Logout</p>
@@ -161,65 +156,66 @@ function Sidebar() {
       <div className={styles["container"]}>
         <div
           className={`${styles.dashboard} ${
-            selectDashboard ? styles.on : undefined
+            active === "Dashboard" && styles.on
           }`}
           onClick={dashboardHandler}
         >
-          {selectDashboard && <div className={styles.rectangle}></div>}
+          {active === "Dashboard" && <div className={styles.rectangle}></div>}
           <i
             className={`bi bi-grid ${styles.icon} ${
-              selectDashboard ? styles.on : styles.off
+              active === "Dashboard" ? styles.on : styles.off
             }`}
           ></i>
           <p className={`${styles.textDasboard} ${styles.close}`}>Dashboard</p>
         </div>
+
         <div
           className={`${styles.dashboard} ${
-            selectTransfer ? styles.on : undefined
+            active === "Transfer" && styles.on
           }`}
           onClick={transferHandler}
         >
-          {selectTransfer && <div className={styles.rectangle}></div>}
+          {active === "Transfer" && <div className={styles.rectangle}></div>}
           <i
             className={`fa-solid fa-arrow-up ${styles.icon} ${
-              selectTransfer ? styles.on : styles.off
+              active === "Transfer" ? styles.on : styles.off
             }`}
           ></i>
           <p className={`${styles.textDasboard} ${styles.close}`}>Transfer</p>
         </div>
+
         <div
-          className={`${styles.dashboard} ${
-            selectTopUp ? styles.on : undefined
-          }`}
+          className={`${styles.dashboard} ${active === "TopUp" && styles.on}`}
           onClick={topupHandler}
         >
-          {selectTopUp && <div className={styles.rectangle}></div>}
+          {active === "TopUp" && <div className={styles.rectangle}></div>}
           <i
             className={`fa-solid fa-plus ${styles.icon} ${
-              selectTopUp ? styles.on : styles.off
+              active === "TopUp" ? styles.on : styles.off
             }`}
           ></i>
           <p className={`${styles.textDasboard} ${styles.close}`}>Top Up</p>
         </div>
+
         <div
-          className={`${styles.dashboard} ${
-            selectProfile ? styles.on : undefined
-          }`}
+          className={`${styles.dashboard} ${active === "Profile" && styles.on}`}
           onClick={profileHandler}
         >
-          {selectProfile && <div className={styles.rectangle}></div>}
+          {active === "Profile" && <div className={styles.rectangle}></div>}
           <i
             className={`fa-regular fa-user ${styles.icon} ${
-              selectProfile ? styles.on : styles.off
+              active === "Profile" ? styles.on : styles.off
             }`}
           ></i>
           <p className={`${styles.textDasboard} ${styles.close}`}>Profile</p>
         </div>
+
         <div className={styles.logout} onClick={logoutHandler}>
           <i className="fa-solid fa-arrow-right-from-bracket"></i>
           <p className={styles["close"]}>Logout</p>
         </div>
       </div>
+      <Modal open={showModal} setOpen={setShowModal} />
     </>
   );
 }
