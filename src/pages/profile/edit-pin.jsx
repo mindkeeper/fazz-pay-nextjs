@@ -1,15 +1,17 @@
 import dynamic from "next/dynamic";
-import Sidebar from "src/components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import Footer from "src/components/Footer";
 const ReactCodeInput = dynamic(import("react-code-input"));
 
-import styles from "src/styles/EditPin.module.css";
-import PageTitle from "src/components/PageTitle";
+import styles from "../../styles/EditPin.module.css";
+import PageTitle from "../../components/PageTitle";
+import Navbar from "../../components/Navbar";
 
 function EditPin() {
   return (
     <>
       <PageTitle title="Edit Pin" />
+      <Navbar />
       <div className={styles["main-container"]}>
         <div className="col-lg-3 col-md-4">
           <Sidebar />
