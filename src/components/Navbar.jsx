@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import defaultImg from "public/images/default.jpg";
 import styles from "src/styles/Navbar.module.css";
-import Sidebar from "src/components/sidebar";
+import Sidebar from "src/components/Sidebar";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
