@@ -1,11 +1,11 @@
 import { ActionType } from "redux-promise-middleware";
-import {
+const {
   login,
   logout,
   register,
   forgotPassword,
   resetPassword,
-} from "src/modules/api/auth";
+} = require("../../modules/api/auth");
 import { ACTION_STRING } from "./actionStrings";
 
 const { Pending, Rejected, Fulfilled } = ActionType;
