@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { currency as currencyComma } from "src/modules/helpers/currency";
-import Navbar from "src/common/components/Navbar";
-import Sidebar from "src/common/components/Sidebar";
-import Footer from "src/common/components/Footer";
-import styles from "src/common/styles/Dashboard.module.css";
+import Navbar from "src/commons/components/Navbar";
+import Sidebar from "src/commons/components/Sidebar";
+import Footer from "src/commons/components/Footer";
+import styles from "src/commons/styles/Dashboard.module.css";
 import { useRouter } from "next/router";
-import PageTitle from "src/common/components/PageTitle";
+import PageTitle from "src/commons/components/PageTitle";
 import { useDispatch, useSelector } from "react-redux";
 import historyAction from "src/redux/actions/history";
-import Card from "src/common/components/CardHistory";
+import Card from "src/commons/components/CardHistory";
 import userAction from "src/redux/actions/user";
-import Modal from "src/common/components/ModalTopUp";
+import Modal from "src/commons/components/ModalTopUp";
 import dashboardAction from "src/redux/actions/dashboard";
 import { Bar } from "react-chartjs-2";
 import {
@@ -128,10 +128,19 @@ function Dashboard() {
               <div className={styles["side-top"]}>
                 <div className={styles["top-left"]}>
                   <p className={styles.balance}>Balance</p>
-                  <p className={styles.price}>{currency(profile.balance)}</p>
-                  <p className={styles.phone}>{profile.noTelp}</p>
+                  <p className={styles.price}>
+                    {currency(profile.balance) || "RP. 0"}
+                  </p>
+                  <p className={styles.phone}>
+                    {profile.noTelp
+                      ? `+62 ${profile.noTelp}`
+                      : "Please Save Your Phone Number"}
+                  </p>
                 </div>
-                <div className={`${styles["top-btn"]} ${styles.btnHide}`}>
+                <div
+                  className={`${styles["top-btn"]} ${styles.btnHide}`}
+                  onClick={() => router.push("/transfer")}
+                >
                   <div className={styles.btn}>
                     <i className="fa-sharp fa-solid fa-arrow-up"></i>
                     <p>Transfer</p>
@@ -142,7 +151,10 @@ function Dashboard() {
                   </div>
                 </div>
               </div>
-              <div className={`${styles["top-btn"]} ${styles.hide}`}>
+              <div
+                className={`${styles["top-btn"]} ${styles.hide}`}
+                onClick={() => router.push("/transfer")}
+              >
                 <div className={styles.btn}>
                   <i className="fa-sharp fa-solid fa-arrow-up"></i>
                   <p>Transfer</p>
@@ -196,7 +208,11 @@ function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  <Bar data={data} options={chartOptions} />
+                  <Bar
+                    data={data}
+                    options={chartOptions}
+                    className={styles["bar-chart"]}
+                  />
                 </aside>
                 <div className={styles["bottom-right"]}>
                   <div className={styles["right-top"]}>

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import css from "src/common/styles/EditPassword.module.css";
-import Sidebar from "src/common/components/Sidebar";
-import Footer from "src/common/components/Footer";
+import css from "src/commons/styles/EditPassword.module.css";
+import Sidebar from "src/commons/components/Sidebar";
+import Footer from "src/commons/components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import userAction from "src/redux/actions/user";
 import { toast } from "react-toastify";
-import PageTitle from "src/common/components/PageTitle";
+import PageTitle from "src/commons/components/PageTitle";
 
 function EditPassword() {
   const router = useRouter();

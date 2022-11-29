@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Footer from "src/common/components/Footer";
-import Navbar from "src/common/components/Navbar";
-import PageTitle from "src/common/components/PageTitle";
-import Sidebar from "src/common/components/SideBar";
-import styles from "src/common/styles/Status.module.css";
+import Footer from "src/commons/components/Footer";
+import Navbar from "src/commons/components/Navbar";
+import PageTitle from "src/commons/components/PageTitle";
+import Sidebar from "src/commons/components/SideBar";
+import styles from "src/commons/styles/Status.module.css";
 import { currency } from "src/modules/helpers/currency";
 import imgDefault from "public/images/default.jpg";
 import Image from "next/image";
@@ -15,6 +15,9 @@ function Status() {
   const userBalance = useSelector((state) => state.user.profile.balance);
   const { receiverData } = transferData;
   const link = process.env.CLOUDINARY_LINK;
+  const dateInfo = `${transferData.date.toLocaleString("en-US", {
+    month: "long",
+  })} ${transferData.date.getDate()}, ${transferData.date.getFullYear()} ${transferData.date.getHours()}.${transferData.date.getMinutes()}`;
   console.log(status);
   return (
     <>
@@ -62,7 +65,7 @@ function Status() {
 
             <div className={styles["item-container"]}>
               <p className={styles["info-label"]}>Date & Time</p>
-              <p className={styles["info-value"]}>{Date(transferData.date)}</p>
+              <p className={styles["info-value"]}>{dateInfo}</p>
             </div>
 
             <div className={styles["item-container"]}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "src/common/components/Sidebar";
-import Footer from "src/common/components/Footer";
-import css from "src/common/styles/Profile.module.css";
+import Sidebar from "src/commons/components/Sidebar";
+import Footer from "src/commons/components/Footer";
+import css from "src/commons/styles/Profile.module.css";
 import Image from "next/image";
 
 import sample from "public/images/default.jpg";
@@ -10,8 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import authAction from "src/redux/actions/auth";
 import userAction from "src/redux/actions/user";
-import PageTitle from "src/common/components/PageTitle";
-import Navbar from "src/common/components/Navbar";
+import PageTitle from "src/commons/components/PageTitle";
+import Navbar from "src/commons/components/Navbar";
 
 function Profile() {
   const router = useRouter();

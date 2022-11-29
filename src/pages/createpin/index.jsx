@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Layout from "src/common/components/LayoutAuth";
-import PageTitle from "src/common/components/PageTitle";
-import styles from "src/common/styles/CreatePin.module.css";
+import Layout from "src/commons/components/LayoutAuth";
+import PageTitle from "src/commons/components/PageTitle";
+import styles from "src/commons/styles/CreatePin.module.css";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -38,7 +38,7 @@ export default function CreatePin() {
 
   const createPinSuccess = () => {
     toast.success("Create Pin Success, Enjoy!");
-    console.log("Directed to Dashboard");
+    router.push("/dashboard");
   };
 
   const createPinError = () => {

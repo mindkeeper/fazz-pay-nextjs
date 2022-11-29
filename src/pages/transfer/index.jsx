@@ -1,16 +1,16 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import Footer from "src/common/components/Footer";
-import Navbar from "src/common/components/Navbar";
-import PageTitle from "src/common/components/PageTitle";
-import Sidebar from "src/common/components/SideBar";
-import css from "src/common/styles/Transfer.module.css";
+import Footer from "src/commons/components/Footer";
+import Navbar from "src/commons/components/Navbar";
+import PageTitle from "src/commons/components/PageTitle";
+import Sidebar from "src/commons/components/SideBar";
+import css from "src/commons/styles/Transfer.module.css";
 import icon from "public/images/search.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { getAllUser } from "src/modules/api/transfer";
 import transferAction from "src/redux/actions/transfer";
-import Card from "src/common/components/CardUser";
+import Card from "src/commons/components/CardUser";
 
 function Transfer() {
   const dispatch = useDispatch();

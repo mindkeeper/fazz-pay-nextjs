@@ -2,14 +2,14 @@ import Image from "next/image";
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "src/common/components/Footer";
-import Navbar from "src/common/components/Navbar";
-import PageTitle from "src/common/components/PageTitle";
-import Sidebar from "src/common/components/SideBar";
-import css from "src/common/styles/Confirmation.module.css";
+import Footer from "src/commons/components/Footer";
+import Navbar from "src/commons/components/Navbar";
+import PageTitle from "src/commons/components/PageTitle";
+import Sidebar from "src/commons/components/SideBar";
+import css from "src/commons/styles/Confirmation.module.css";
 import imgDefault from "public/images/default.jpg";
 import { currency } from "src/modules/helpers/currency";
-import Modal from "src/common/components/ModalPin";
+import Modal from "src/commons/components/ModalPin";
 
 function Confirmation() {
   const transferData = useSelector((state) => state.transfer.transferData);
@@ -17,6 +17,9 @@ function Confirmation() {
   const userBalance = useSelector((state) => state.user.profile.balance);
   const link = process.env.CLOUDINARY_LINK;
   const [open, setOpen] = useState(false);
+  const dateInfo = `${transferData.date.toLocaleString("en-US", {
+    month: "long",
+  })} ${transferData.date.getDate()}, ${transferData.date.getFullYear()} ${transferData.date.getHours()}.${transferData.date.getMinutes()}`;
   return (
     <>
       <PageTitle title="Transfer Confirmation" />
@@ -70,7 +73,7 @@ function Confirmation() {
             <div className={css["card-detail"]}>
               <div>
                 <p className={css.details}>Date & Time</p>
-                <p className={css.subdetails}>{Date(transferData.date)}</p>
+                <p className={css.subdetails}>{dateInfo}</p>
               </div>
             </div>
             <div className={css["card-detail"]}>

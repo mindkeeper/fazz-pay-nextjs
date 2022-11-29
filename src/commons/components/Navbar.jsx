@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import defaultImg from "public/images/default.jpg";
-import styles from "src/common/styles/Navbar.module.css";
-import Sidebar from "src/common/components/sidebar";
+import styles from "src/commons/styles/Navbar.module.css";
+import Sidebar from "src/commons/components/sidebar";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -79,7 +79,11 @@ function Navbar({ children }) {
                 className={styles["navbar-name"]}
                 onClick={() => router.push("/profile")}
               >{`${profile.firstName} ${profile.lastName}`}</p>
-              <p className={styles["navbar-phone"]}>{profile.noTelp}</p>
+              <p className={styles["navbar-phone"]}>
+                {profile.noTelp
+                  ? `+62 ${profile.noTelp}`
+                  : "Please save yout phone number"}
+              </p>
             </div>
           </div>
           <i

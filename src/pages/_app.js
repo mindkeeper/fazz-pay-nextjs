@@ -1,4 +1,4 @@
-import "src/common/styles/globals.css";
+import "src/commons/styles/globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "src/common/styles/LayoutAuth.module.css";
+import styles from "src/commons/styles/LayoutAuth.module.css";
 export default function LayoutAuth({ children }) {
   return (
     <main className={styles["main"]}>

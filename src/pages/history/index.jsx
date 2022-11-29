@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CardHistory from "src/common/components/CardHistory";
-import Footer from "src/common/components/Footer";
-import Navbar from "src/common/components/Navbar";
-import PageTitle from "src/common/components/PageTitle";
-import Sidebar from "src/common/components/SideBar";
-import styles from "src/common/styles/History.module.css";
+import CardHistory from "src/commons/components/CardHistory";
+import Footer from "src/commons/components/Footer";
+import Navbar from "src/commons/components/Navbar";
+import PageTitle from "src/commons/components/PageTitle";
+import Sidebar from "src/commons/components/SideBar";
+import styles from "src/commons/styles/History.module.css";
 import historyAction from "src/redux/actions/history";
 
 function History() {
