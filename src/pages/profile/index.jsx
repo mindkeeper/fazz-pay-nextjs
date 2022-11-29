@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import Footer from "src/components/Footer";
 import css from "src/styles/Profile.module.css";
 import Image from "next/image";
