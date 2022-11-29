@@ -5,7 +5,7 @@ import {
   register,
   forgotPassword,
   resetPassword,
-} from "../../modules/api/auth";
+} from "src/modules/api/auth";
 import { ACTION_STRING } from "./actionStrings";
 
 const { Pending, Rejected, Fulfilled } = ActionType;
