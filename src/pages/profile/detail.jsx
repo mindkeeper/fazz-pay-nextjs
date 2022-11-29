@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Footer from "src/commons/components/Footer";
-import Sidebar from "src/commons/components/Sidebar";
-import css from "src/commons/styles/ProfileDetail.module.css";
+import Footer from "src/components/Footer";
+import Sidebar from "src/components/Sidebar";
+import css from "src/styles/ProfileDetail.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import userAction from "src/redux/actions/user";
-import PageTitle from "src/commons/components/PageTitle";
-import Navbar from "src/commons/components/Navbar";
+import PageTitle from "src/components/PageTitle";
+import Navbar from "src/components/Navbar";
 
 function Detail() {
   const router = useRouter();

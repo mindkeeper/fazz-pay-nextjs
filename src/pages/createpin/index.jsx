@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Layout from "src/commons/components/LayoutAuth";
-import PageTitle from "src/commons/components/PageTitle";
-import styles from "src/commons/styles/CreatePin.module.css";
+import Layout from "src/components/LayoutAuth";
+import PageTitle from "src/components/PageTitle";
+import styles from "src/styles/CreatePin.module.css";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import styles from "src/commons/styles/CardHistory.module.css";
+import styles from "src/styles/CardHistory.module.css";
 import defaultImg from "public/images/default.jpg";
 import Link from "next/link";
 

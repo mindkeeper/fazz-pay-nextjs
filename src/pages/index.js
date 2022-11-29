@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Button from "src/commons/components/Button";
-import PageTitle from "src/commons/components/PageTitle";
-import styles from "src/commons/styles/LandingPage.module.css";
+import Button from "src/components/Button";
+import PageTitle from "src/components/PageTitle";
+import styles from "src/styles/LandingPage.module.css";
 
 import phone from "public/images/phone.svg";
 import phone2 from "public/images/phone2.svg";

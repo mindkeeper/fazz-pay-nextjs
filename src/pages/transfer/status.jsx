@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Footer from "src/commons/components/Footer";
-import Navbar from "src/commons/components/Navbar";
-import PageTitle from "src/commons/components/PageTitle";
-import Sidebar from "src/commons/components/SideBar";
-import styles from "src/commons/styles/Status.module.css";
+import Footer from "src/components/Footer";
+import Navbar from "src/components/Navbar";
+import PageTitle from "src/components/PageTitle";
+import Sidebar from "src/components/SideBar";
+import styles from "src/styles/Status.module.css";
 import { currency } from "src/modules/helpers/currency";
 import imgDefault from "public/images/default.jpg";
 import Image from "next/image";

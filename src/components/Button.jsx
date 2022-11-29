@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "src/commons/styles/Button.module.css";
+import styles from "src/styles/Button.module.css";
 
 function Button({ variant, text, onClick }) {
   return (

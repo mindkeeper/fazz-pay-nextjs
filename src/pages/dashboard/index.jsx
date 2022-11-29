@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { currency as currencyComma } from "src/modules/helpers/currency";
-import Navbar from "src/commons/components/Navbar";
-import Sidebar from "src/commons/components/Sidebar";
-import Footer from "src/commons/components/Footer";
-import styles from "src/commons/styles/Dashboard.module.css";
+import Navbar from "src/components/Navbar";
+import Sidebar from "src/components/Sidebar";
+import Footer from "src/components/Footer";
+import styles from "src/styles/Dashboard.module.css";
 import { useRouter } from "next/router";
-import PageTitle from "src/commons/components/PageTitle";
+import PageTitle from "src/components/PageTitle";
 import { useDispatch, useSelector } from "react-redux";
 import historyAction from "src/redux/actions/history";
-import Card from "src/commons/components/CardHistory";
+import Card from "src/components/CardHistory";
 import userAction from "src/redux/actions/user";
-import Modal from "src/commons/components/ModalTopUp";
+import Modal from "src/components/ModalTopUp";
 import dashboardAction from "src/redux/actions/dashboard";
 import { Bar } from "react-chartjs-2";
 import {

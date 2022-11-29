@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "src/commons/components/Navbar";
-import Footer from "src/commons/components/Footer";
-import Sidebar from "src/commons/components/Sidebar";
-import css from "src/commons/styles/EditPhone.module.css";
+import Header from "src/components/Navbar";
+import Footer from "src/components/Footer";
+import Sidebar from "src/components/Sidebar";
+import css from "src/styles/EditPhone.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import userAction from "src/redux/actions/user";
 import { toast } from "react-toastify";

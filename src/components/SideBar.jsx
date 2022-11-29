@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import authAction from "src/redux/actions/auth";
-import styles from "src/commons/styles/SideBar.module.css";
+import styles from "src/styles/SideBar.module.css";
 import Modal from "./ModalTopUp";
 
 function Sidebar() {
