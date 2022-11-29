@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "src/components/Navbar";
 import Footer from "src/components/Footer";
-import Sidebar from "src/components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import css from "src/styles/EditPhone.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import userAction from "src/redux/actions/user";

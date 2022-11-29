@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Footer from "src/components/Footer";
-import Sidebar from "src/components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import css from "src/styles/ProfileDetail.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";

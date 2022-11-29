@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import css from "src/styles/EditPassword.module.css";
-import Sidebar from "src/components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import Footer from "src/components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import userAction from "src/redux/actions/user";

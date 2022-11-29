@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { currency as currencyComma } from "src/modules/helpers/currency";
 import Navbar from "src/components/Navbar";
-import Sidebar from "src/components/Sidebar";
+import Sidebar from "../../components/SideBar";
 import Footer from "src/components/Footer";
 import styles from "src/styles/Dashboard.module.css";
 import { useRouter } from "next/router";
