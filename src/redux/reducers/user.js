@@ -146,6 +146,10 @@ const userReducer = (prevState = initialState, { type, payload }) => {
         ...prevState,
         isFulfilled: true,
         isLoading: false,
+        profile: {
+          image: payload.imgPrev,
+          ...profile,
+        },
       };
 
     case userEditPin.concat("_", Pending):

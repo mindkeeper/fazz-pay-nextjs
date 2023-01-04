@@ -1,6 +1,6 @@
 import { ACTION_STRING } from "./actionStrings";
 import { ActionType } from "redux-promise-middleware";
-const { getHistory } = require("src/modules/api/history");
+import { getHistory } from "../../modules/api/history";
 
 const { Pending, Rejected, Fulfilled } = ActionType;
 

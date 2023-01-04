@@ -99,9 +99,9 @@ const editImageRejected = (error) => ({
   type: ACTION_STRING.userEditImage.concat("_", Rejected),
   payload: { error },
 });
-const editImageFulfilled = (data) => ({
+const editImageFulfilled = (data, imgPrev) => ({
   type: ACTION_STRING.userEditImage.concat("_", Fulfilled),
-  payload: { data },
+  payload: { data, imgPrev },
 });
 
 const deleteImagePending = () => ({
@@ -166,12 +166,12 @@ const editPhoneThunk = (token, id, body, cbSuccess) => {
   };
 };
 
-const editImageThunk = (token, id, body) => {
+const editImageThunk = (token, id, body, imgPrev) => {
   return async (dispatch) => {
     try {
       dispatch(editImagePending());
       const result = await editImage(token, id, body);
-      dispatch(editImageFulfilled(result.data));
+      dispatch(editImageFulfilled(result.data, imgPrev));
     } catch (error) {
       dispatch(editImageRejected(error));
     }

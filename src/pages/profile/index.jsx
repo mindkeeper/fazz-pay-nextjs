@@ -57,7 +57,12 @@ function Profile() {
     body.append("image", e.target.files[0]);
 
     dispatch(
-      userAction.editImageThunk(auth.userData.token, auth.userData.id, body)
+      userAction.editImageThunk(
+        auth.userData.token,
+        auth.userData.id,
+        body,
+        imgPrev
+      )
     );
   };
 
@@ -66,7 +71,7 @@ function Profile() {
       userAction.getUserDetailThunk(auth.userData.token, auth.userData.id)
     );
   }, [auth]);
-
+  console.log(imgPrev);
   return (
     <>
       <PageTitle title="Profile" />
